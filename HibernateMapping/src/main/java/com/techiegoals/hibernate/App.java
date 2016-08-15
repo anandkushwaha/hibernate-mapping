@@ -1,31 +1,32 @@
 package com.techiegoals.hibernate;
 
-import java.util.Date;
-
 import org.hibernate.Session;
 
+import com.techiegoals.entity.UserDetails;
 import com.techiegoals.util.HibernateUtil;
 
 /**
- * Hello world!
+ * App to save and retrieve data using hibernate!
  *
  */
-public class App 
-{
-    public static void main( String[] args )
-    {
-    	System.out.println("Maven + Hibernate + Oracle");
-		Session session = HibernateUtil.getSessionFactory().openSession();
+public class App {
+    public static void main(String[] args) {
 
-		session.beginTransaction();
-		DBUser user = new DBUser();
+        // getting session from hibernate session factory
+        Session session = HibernateUtil.getSessionFactory().openSession();
 
-		user.setUserId(100);
-		user.setUsername("superman");
-		user.setCreatedBy("system");
-		user.setCreatedDate(new Date());
+        // starting new transaction
+        session.beginTransaction();
 
-		session.save(user);
-		session.getTransaction().commit();
+        // creating the user object to save
+        UserDetails user = new UserDetails();
+        user.setUserId(101);
+        user.setUserName("Anand");
+
+        // saving the user
+        session.save(user);
+
+        // committing the transaction
+        session.getTransaction().commit();
     }
 }
