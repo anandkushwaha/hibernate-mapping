@@ -1,20 +1,24 @@
-package com.techiegoals.entity;
+package com.techiegoals.onetoone.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
+@Table(name = "User_Details")
 public class UserDetails {
 
-    
-//    @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int userId;
 
     private String userName;
+
+    @OneToOne
+    private Vehicle vehicle;
 
     public int getUserId() {
         return userId;
@@ -30,6 +34,14 @@ public class UserDetails {
 
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    public Vehicle getVehicle() {
+        return vehicle;
+    }
+
+    public void setVehicle(Vehicle vehicle) {
+        this.vehicle = vehicle;
     }
 
 }
